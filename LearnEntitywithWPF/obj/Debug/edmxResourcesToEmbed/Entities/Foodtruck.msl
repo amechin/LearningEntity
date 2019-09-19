@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FoodtruckModelStoreContainer" CdmEntityContainer="FoodtruckEntities">
+    <EntitySetMapping Name="ACTUALITES">
+      <EntityTypeMapping TypeName="FoodtruckModel.ACTUALITES">
+        <MappingFragment StoreEntitySet="ACTUALITES">
+          <ScalarProperty Name="ID_ACTUALITE" ColumnName="ID_ACTUALITE" />
+          <ScalarProperty Name="TITRE" ColumnName="TITRE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="URL_IMAGE" ColumnName="URL_IMAGE" />
+          <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+          <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+          <ScalarProperty Name="LINK" ColumnName="LINK" />
+          <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+          <ScalarProperty Name="ACTIF" ColumnName="ACTIF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ADRESSE">
+      <EntityTypeMapping TypeName="FoodtruckModel.ADRESSE">
+        <MappingFragment StoreEntitySet="ADRESSE">
+          <ScalarProperty Name="ID_ADRESSE" ColumnName="ID_ADRESSE" />
+          <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+          <ScalarProperty Name="LIBELLE_ADRESSE" ColumnName="LIBELLE_ADRESSE" />
+          <ScalarProperty Name="ACTIF" ColumnName="ACTIF" />
+          <ScalarProperty Name="NUMERO_RUE" ColumnName="NUMERO_RUE" />
+          <ScalarProperty Name="RUE" ColumnName="RUE" />
+          <ScalarProperty Name="CODE_POSTAL" ColumnName="CODE_POSTAL" />
+          <ScalarProperty Name="VILLE" ColumnName="VILLE" />
+          <ScalarProperty Name="PAYS" ColumnName="PAYS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ALLERGENE">
+      <EntityTypeMapping TypeName="FoodtruckModel.ALLERGENE">
+        <MappingFragment StoreEntitySet="ALLERGENE">
+          <ScalarProperty Name="ID_ALLERGENE" ColumnName="ID_ALLERGENE" />
+          <ScalarProperty Name="LIBELLE_ALLERGENE" ColumnName="LIBELLE_ALLERGENE" />
+          <ScalarProperty Name="CODE_ALLERGENE" ColumnName="CODE_ALLERGENE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMMANDE">
+      <EntityTypeMapping TypeName="FoodtruckModel.COMMANDE">
+        <MappingFragment StoreEntitySet="COMMANDE">
+          <ScalarProperty Name="ID_COMMANDE" ColumnName="ID_COMMANDE" />
+          <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+          <ScalarProperty Name="ID_ADRESSE" ColumnName="ID_ADRESSE" />
+          <ScalarProperty Name="DATE_COMMANDE" ColumnName="DATE_COMMANDE" />
+          <ScalarProperty Name="TOTAL_COMMANDE" ColumnName="TOTAL_COMMANDE" />
+          <ScalarProperty Name="ID_COMMANDE_STATUS" ColumnName="ID_COMMANDE_STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMMANDE_STATUT">
+      <EntityTypeMapping TypeName="FoodtruckModel.COMMANDE_STATUT">
+        <MappingFragment StoreEntitySet="COMMANDE_STATUT">
+          <ScalarProperty Name="ID_COMMANDE_STATUT" ColumnName="ID_COMMANDE_STATUT" />
+          <ScalarProperty Name="LIBELLE_COMMANDE_STATUT" ColumnName="LIBELLE_COMMANDE_STATUT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FACTURE">
+      <EntityTypeMapping TypeName="FoodtruckModel.FACTURE">
+        <MappingFragment StoreEntitySet="FACTURE">
+          <ScalarProperty Name="ID_FACTURE" ColumnName="ID_FACTURE" />
+          <ScalarProperty Name="ID_COMMANDE" ColumnName="ID_COMMANDE" />
+          <ScalarProperty Name="ID_ADRESSE" ColumnName="ID_ADRESSE" />
+          <ScalarProperty Name="TOTAL_FACTURE" ColumnName="TOTAL_FACTURE" />
+          <ScalarProperty Name="FACTUREE" ColumnName="FACTUREE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FAMILLE_REPAS">
+      <EntityTypeMapping TypeName="FoodtruckModel.FAMILLE_REPAS">
+        <MappingFragment StoreEntitySet="FAMILLE_REPAS">
+          <ScalarProperty Name="ID_FAMILLE_REPAS" ColumnName="ID_FAMILLE_REPAS" />
+          <ScalarProperty Name="LIBELLE_FAMILLE_REPAS" ColumnName="LIBELLE_FAMILLE_REPAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GENRE">
+      <EntityTypeMapping TypeName="FoodtruckModel.GENRE">
+        <MappingFragment StoreEntitySet="GENRE">
+          <ScalarProperty Name="ID_GENRE" ColumnName="ID_GENRE" />
+          <ScalarProperty Name="LIBELLE_GENRE" ColumnName="LIBELLE_GENRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIGNE_COMMANDE">
+      <EntityTypeMapping TypeName="FoodtruckModel.LIGNE_COMMANDE">
+        <MappingFragment StoreEntitySet="LIGNE_COMMANDE">
+          <ScalarProperty Name="ID_LIGNE_COMMANDE" ColumnName="ID_LIGNE_COMMANDE" />
+          <ScalarProperty Name="ID_COMMANDE" ColumnName="ID_COMMANDE" />
+          <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+          <ScalarProperty Name="QTE" ColumnName="QTE" />
+          <ScalarProperty Name="PRIX_UNITAIRE" ColumnName="PRIX_UNITAIRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIGNE_FACTURE">
+      <EntityTypeMapping TypeName="FoodtruckModel.LIGNE_FACTURE">
+        <MappingFragment StoreEntitySet="LIGNE_FACTURE">
+          <ScalarProperty Name="ID_LIGNE_FACTURE" ColumnName="ID_LIGNE_FACTURE" />
+          <ScalarProperty Name="ID_FACTURE" ColumnName="ID_FACTURE" />
+          <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+          <ScalarProperty Name="PRIX_UNITAIRE" ColumnName="PRIX_UNITAIRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NOTE">
+      <EntityTypeMapping TypeName="FoodtruckModel.NOTE">
+        <MappingFragment StoreEntitySet="NOTE">
+          <ScalarProperty Name="ID_NOTE" ColumnName="ID_NOTE" />
+          <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+          <ScalarProperty Name="ID_COMMANDE" ColumnName="ID_COMMANDE" />
+          <ScalarProperty Name="NOTE1" ColumnName="NOTE" />
+          <ScalarProperty Name="DATE_NOTE" ColumnName="DATE_NOTE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="ACTIF" ColumnName="ACTIF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PARAMETRAGE">
+      <EntityTypeMapping TypeName="FoodtruckModel.PARAMETRAGE">
+        <MappingFragment StoreEntitySet="PARAMETRAGE">
+          <ScalarProperty Name="ID_PARAMETRAGE" ColumnName="ID_PARAMETRAGE" />
+          <ScalarProperty Name="PLAGE" ColumnName="PLAGE" />
+          <ScalarProperty Name="PRIX" ColumnName="PRIX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUIT">
+      <EntityTypeMapping TypeName="FoodtruckModel.PRODUIT">
+        <MappingFragment StoreEntitySet="PRODUIT">
+          <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+          <ScalarProperty Name="ID_FAMILLE_REPAS" ColumnName="ID_FAMILLE_REPAS" />
+          <ScalarProperty Name="LIBELLE_PRODUIT" ColumnName="LIBELLE_PRODUIT" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="NOMBRE_DE_VENTE" ColumnName="NOMBRE_DE_VENTE" />
+          <ScalarProperty Name="PRIX" ColumnName="PRIX" />
+          <ScalarProperty Name="URL_IMAGE" ColumnName="URL_IMAGE" />
+          <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+          <ScalarProperty Name="LMMJVSD" ColumnName="LMMJVSD" />
+          <ScalarProperty Name="MOYENNE_NOTE" ColumnName="MOYENNE_NOTE" />
+          <ScalarProperty Name="UNITE" ColumnName="UNITE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUIT_ALLERGENE">
+      <EntityTypeMapping TypeName="FoodtruckModel.PRODUIT_ALLERGENE">
+        <MappingFragment StoreEntitySet="PRODUIT_ALLERGENE">
+          <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+          <ScalarProperty Name="ID_ALLERGENE" ColumnName="ID_ALLERGENE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROFIL">
+      <EntityTypeMapping TypeName="FoodtruckModel.PROFIL">
+        <MappingFragment StoreEntitySet="PROFIL">
+          <ScalarProperty Name="ID_PROFIL" ColumnName="ID_PROFIL" />
+          <ScalarProperty Name="LIBELLE_PROFIL" ColumnName="LIBELLE_PROFIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOCIETE">
+      <EntityTypeMapping TypeName="FoodtruckModel.SOCIETE">
+        <MappingFragment StoreEntitySet="SOCIETE">
+          <ScalarProperty Name="ID_SOCIETE" ColumnName="ID_SOCIETE" />
+          <ScalarProperty Name="LIBELLE_SOCIETE" ColumnName="LIBELLE_SOCIETE" />
+          <ScalarProperty Name="NUMERO_RUE" ColumnName="NUMERO_RUE" />
+          <ScalarProperty Name="RUE" ColumnName="RUE" />
+          <ScalarProperty Name="CODE_POSTAL" ColumnName="CODE_POSTAL" />
+          <ScalarProperty Name="VILLE" ColumnName="VILLE" />
+          <ScalarProperty Name="PAYS" ColumnName="PAYS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TYPE_FAMILLE_REPAS">
+      <EntityTypeMapping TypeName="FoodtruckModel.TYPE_FAMILLE_REPAS">
+        <MappingFragment StoreEntitySet="TYPE_FAMILLE_REPAS">
+          <ScalarProperty Name="ID_TYPE_REPAS" ColumnName="ID_TYPE_REPAS" />
+          <ScalarProperty Name="ID_FAMILLE_REPAS" ColumnName="ID_FAMILLE_REPAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TYPE_REPAS">
+      <EntityTypeMapping TypeName="FoodtruckModel.TYPE_REPAS">
+        <MappingFragment StoreEntitySet="TYPE_REPAS">
+          <ScalarProperty Name="ID_TYPE_REPAS" ColumnName="ID_TYPE_REPAS" />
+          <ScalarProperty Name="LIBELLE_REPAS" ColumnName="LIBELLE_REPAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UTILISATEUR">
+      <EntityTypeMapping TypeName="FoodtruckModel.UTILISATEUR">
+        <MappingFragment StoreEntitySet="UTILISATEUR">
+          <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+          <ScalarProperty Name="ID_GENRE" ColumnName="ID_GENRE" />
+          <ScalarProperty Name="ID_PROFIL" ColumnName="ID_PROFIL" />
+          <ScalarProperty Name="ID_SOCIETE" ColumnName="ID_SOCIETE" />
+          <ScalarProperty Name="NOM" ColumnName="NOM" />
+          <ScalarProperty Name="PRENOM" ColumnName="PRENOM" />
+          <ScalarProperty Name="MOT_DE_PASSE" ColumnName="MOT_DE_PASSE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="DATE_DE_NAISSANCE" ColumnName="DATE_DE_NAISSANCE" />
+          <ScalarProperty Name="TEL" ColumnName="TEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

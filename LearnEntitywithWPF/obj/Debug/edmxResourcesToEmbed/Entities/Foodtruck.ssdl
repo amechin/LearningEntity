@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FoodtruckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.ACTUALITES' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="ACTUALITES">
+    <Key>
+      <PropertyRef Name="ID_ACTUALITE" />
+      <PropertyRef Name="TITRE" />
+      <PropertyRef Name="DESCRIPTION" />
+      <PropertyRef Name="URL_IMAGE" />
+      <PropertyRef Name="DATE_DEBUT" />
+      <PropertyRef Name="DATE_FIN" />
+      <PropertyRef Name="LINK" />
+      <PropertyRef Name="ID_UTILISATEUR" />
+      <PropertyRef Name="ACTIF" />
+    </Key>
+    <Property Name="ID_ACTUALITE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TITRE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="text" Nullable="false" />
+    <Property Name="URL_IMAGE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="DATE_DEBUT" Type="datetime" Nullable="false" />
+    <Property Name="DATE_FIN" Type="datetime" Nullable="false" />
+    <Property Name="LINK" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID_UTILISATEUR" Type="int" Nullable="false" />
+    <Property Name="ACTIF" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.ADRESSE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="ADRESSE">
+    <Key>
+      <PropertyRef Name="ID_ADRESSE" />
+      <PropertyRef Name="ID_UTILISATEUR" />
+      <PropertyRef Name="LIBELLE_ADRESSE" />
+      <PropertyRef Name="ACTIF" />
+      <PropertyRef Name="NUMERO_RUE" />
+      <PropertyRef Name="RUE" />
+      <PropertyRef Name="CODE_POSTAL" />
+      <PropertyRef Name="VILLE" />
+      <PropertyRef Name="PAYS" />
+    </Key>
+    <Property Name="ID_ADRESSE" Type="int" Nullable="false" />
+    <Property Name="ID_UTILISATEUR" Type="int" Nullable="false" />
+    <Property Name="LIBELLE_ADRESSE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ACTIF" Type="bit" Nullable="false" />
+    <Property Name="NUMERO_RUE" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="RUE" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="CODE_POSTAL" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="VILLE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PAYS" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.ALLERGENE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="ALLERGENE">
+    <Key>
+      <PropertyRef Name="ID_ALLERGENE" />
+      <PropertyRef Name="LIBELLE_ALLERGENE" />
+    </Key>
+    <Property Name="ID_ALLERGENE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LIBELLE_ALLERGENE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="CODE_ALLERGENE" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.COMMANDE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="COMMANDE">
+    <Key>
+      <PropertyRef Name="ID_COMMANDE" />
+      <PropertyRef Name="ID_UTILISATEUR" />
+      <PropertyRef Name="ID_ADRESSE" />
+      <PropertyRef Name="DATE_COMMANDE" />
+      <PropertyRef Name="TOTAL_COMMANDE" />
+      <PropertyRef Name="ID_COMMANDE_STATUS" />
+    </Key>
+    <Property Name="ID_COMMANDE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_UTILISATEUR" Type="int" Nullable="false" />
+    <Property Name="ID_ADRESSE" Type="int" Nullable="false" />
+    <Property Name="DATE_COMMANDE" Type="datetime" Nullable="false" />
+    <Property Name="TOTAL_COMMANDE" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ID_COMMANDE_STATUS" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.COMMANDE_STATUT' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="COMMANDE_STATUT">
+    <Key>
+      <PropertyRef Name="ID_COMMANDE_STATUT" />
+      <PropertyRef Name="LIBELLE_COMMANDE_STATUT" />
+    </Key>
+    <Property Name="ID_COMMANDE_STATUT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LIBELLE_COMMANDE_STATUT" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.FACTURE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="FACTURE">
+    <Key>
+      <PropertyRef Name="ID_FACTURE" />
+      <PropertyRef Name="ID_COMMANDE" />
+      <PropertyRef Name="ID_ADRESSE" />
+      <PropertyRef Name="TOTAL_FACTURE" />
+      <PropertyRef Name="FACTUREE" />
+    </Key>
+    <Property Name="ID_FACTURE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_COMMANDE" Type="int" Nullable="false" />
+    <Property Name="ID_ADRESSE" Type="int" Nullable="false" />
+    <Property Name="TOTAL_FACTURE" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="FACTUREE" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.FAMILLE_REPAS' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="FAMILLE_REPAS">
+    <Key>
+      <PropertyRef Name="ID_FAMILLE_REPAS" />
+      <PropertyRef Name="LIBELLE_FAMILLE_REPAS" />
+    </Key>
+    <Property Name="ID_FAMILLE_REPAS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LIBELLE_FAMILLE_REPAS" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.GENRE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="GENRE">
+    <Key>
+      <PropertyRef Name="ID_GENRE" />
+      <PropertyRef Name="LIBELLE_GENRE" />
+    </Key>
+    <Property Name="ID_GENRE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LIBELLE_GENRE" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.LIGNE_COMMANDE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="LIGNE_COMMANDE">
+    <Key>
+      <PropertyRef Name="ID_LIGNE_COMMANDE" />
+      <PropertyRef Name="ID_COMMANDE" />
+      <PropertyRef Name="ID_PRODUIT" />
+      <PropertyRef Name="QTE" />
+      <PropertyRef Name="PRIX_UNITAIRE" />
+    </Key>
+    <Property Name="ID_LIGNE_COMMANDE" Type="int" Nullable="false" />
+    <Property Name="ID_COMMANDE" Type="int" Nullable="false" />
+    <Property Name="ID_PRODUIT" Type="int" Nullable="false" />
+    <Property Name="QTE" Type="float" Nullable="false" />
+    <Property Name="PRIX_UNITAIRE" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.LIGNE_FACTURE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="LIGNE_FACTURE">
+    <Key>
+      <PropertyRef Name="ID_LIGNE_FACTURE" />
+      <PropertyRef Name="ID_FACTURE" />
+      <PropertyRef Name="QUANTITE" />
+      <PropertyRef Name="PRIX_UNITAIRE" />
+    </Key>
+    <Property Name="ID_LIGNE_FACTURE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_FACTURE" Type="int" Nullable="false" />
+    <Property Name="QUANTITE" Type="float" Nullable="false" />
+    <Property Name="PRIX_UNITAIRE" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.NOTE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="NOTE">
+    <Key>
+      <PropertyRef Name="ID_NOTE" />
+      <PropertyRef Name="ID_PRODUIT" />
+      <PropertyRef Name="ID_COMMANDE" />
+      <PropertyRef Name="NOTE" />
+      <PropertyRef Name="DATE_NOTE" />
+      <PropertyRef Name="ACTIF" />
+    </Key>
+    <Property Name="ID_NOTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_PRODUIT" Type="int" Nullable="false" />
+    <Property Name="ID_COMMANDE" Type="int" Nullable="false" />
+    <Property Name="NOTE" Type="float" Nullable="false" />
+    <Property Name="DATE_NOTE" Type="datetime" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="text" />
+    <Property Name="ACTIF" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.PARAMETRAGE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="PARAMETRAGE">
+    <Key>
+      <PropertyRef Name="ID_PARAMETRAGE" />
+      <PropertyRef Name="PLAGE" />
+    </Key>
+    <Property Name="ID_PARAMETRAGE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PLAGE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="PRIX" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.PRODUIT' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="PRODUIT">
+    <Key>
+      <PropertyRef Name="ID_PRODUIT" />
+      <PropertyRef Name="ID_FAMILLE_REPAS" />
+      <PropertyRef Name="LIBELLE_PRODUIT" />
+      <PropertyRef Name="NOMBRE_DE_VENTE" />
+      <PropertyRef Name="PRIX" />
+      <PropertyRef Name="URL_IMAGE" />
+      <PropertyRef Name="STOCK" />
+    </Key>
+    <Property Name="ID_PRODUIT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_FAMILLE_REPAS" Type="int" Nullable="false" />
+    <Property Name="LIBELLE_PRODUIT" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="text" />
+    <Property Name="NOMBRE_DE_VENTE" Type="int" Nullable="false" />
+    <Property Name="PRIX" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="URL_IMAGE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="STOCK" Type="int" Nullable="false" />
+    <Property Name="LMMJVSD" Type="varchar" MaxLength="7" />
+    <Property Name="MOYENNE_NOTE" Type="float" />
+    <Property Name="UNITE" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.PRODUIT_ALLERGENE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="PRODUIT_ALLERGENE">
+    <Key>
+      <PropertyRef Name="ID_PRODUIT" />
+      <PropertyRef Name="ID_ALLERGENE" />
+    </Key>
+    <Property Name="ID_PRODUIT" Type="int" Nullable="false" />
+    <Property Name="ID_ALLERGENE" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.PROFIL' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="PROFIL">
+    <Key>
+      <PropertyRef Name="ID_PROFIL" />
+      <PropertyRef Name="LIBELLE_PROFIL" />
+    </Key>
+    <Property Name="ID_PROFIL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LIBELLE_PROFIL" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.SOCIETE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="SOCIETE">
+    <Key>
+      <PropertyRef Name="ID_SOCIETE" />
+      <PropertyRef Name="LIBELLE_SOCIETE" />
+      <PropertyRef Name="NUMERO_RUE" />
+      <PropertyRef Name="RUE" />
+      <PropertyRef Name="CODE_POSTAL" />
+      <PropertyRef Name="VILLE" />
+      <PropertyRef Name="PAYS" />
+    </Key>
+    <Property Name="ID_SOCIETE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LIBELLE_SOCIETE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NUMERO_RUE" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="RUE" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="CODE_POSTAL" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="VILLE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PAYS" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.TYPE_FAMILLE_REPAS' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="TYPE_FAMILLE_REPAS">
+    <Key>
+      <PropertyRef Name="ID_TYPE_REPAS" />
+      <PropertyRef Name="ID_FAMILLE_REPAS" />
+    </Key>
+    <Property Name="ID_TYPE_REPAS" Type="int" Nullable="false" />
+    <Property Name="ID_FAMILLE_REPAS" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.TYPE_REPAS' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="TYPE_REPAS">
+    <Key>
+      <PropertyRef Name="ID_TYPE_REPAS" />
+      <PropertyRef Name="LIBELLE_REPAS" />
+    </Key>
+    <Property Name="ID_TYPE_REPAS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LIBELLE_REPAS" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.UTILISATEUR' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="UTILISATEUR">
+    <Key>
+      <PropertyRef Name="ID_UTILISATEUR" />
+      <PropertyRef Name="ID_GENRE" />
+      <PropertyRef Name="ID_PROFIL" />
+      <PropertyRef Name="NOM" />
+      <PropertyRef Name="PRENOM" />
+      <PropertyRef Name="MOT_DE_PASSE" />
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="DATE_DE_NAISSANCE" />
+    </Key>
+    <Property Name="ID_UTILISATEUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_GENRE" Type="int" Nullable="false" />
+    <Property Name="ID_PROFIL" Type="int" Nullable="false" />
+    <Property Name="ID_SOCIETE" Type="int" />
+    <Property Name="NOM" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PRENOM" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MOT_DE_PASSE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DATE_DE_NAISSANCE" Type="date" Nullable="false" />
+    <Property Name="TEL" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityContainer Name="FoodtruckModelStoreContainer">
+    <EntitySet Name="ACTUALITES" EntityType="Self.ACTUALITES" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ACTUALITES].[ID_ACTUALITE] AS [ID_ACTUALITE], 
+    [ACTUALITES].[TITRE] AS [TITRE], 
+    [ACTUALITES].[DESCRIPTION] AS [DESCRIPTION], 
+    [ACTUALITES].[URL_IMAGE] AS [URL_IMAGE], 
+    [ACTUALITES].[DATE_DEBUT] AS [DATE_DEBUT], 
+    [ACTUALITES].[DATE_FIN] AS [DATE_FIN], 
+    [ACTUALITES].[LINK] AS [LINK], 
+    [ACTUALITES].[ID_UTILISATEUR] AS [ID_UTILISATEUR], 
+    [ACTUALITES].[ACTIF] AS [ACTIF]
+    FROM [dbo].[ACTUALITES] AS [ACTUALITES]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ADRESSE" EntityType="Self.ADRESSE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ADRESSE].[ID_ADRESSE] AS [ID_ADRESSE], 
+    [ADRESSE].[ID_UTILISATEUR] AS [ID_UTILISATEUR], 
+    [ADRESSE].[LIBELLE_ADRESSE] AS [LIBELLE_ADRESSE], 
+    [ADRESSE].[ACTIF] AS [ACTIF], 
+    [ADRESSE].[NUMERO_RUE] AS [NUMERO_RUE], 
+    [ADRESSE].[RUE] AS [RUE], 
+    [ADRESSE].[CODE_POSTAL] AS [CODE_POSTAL], 
+    [ADRESSE].[VILLE] AS [VILLE], 
+    [ADRESSE].[PAYS] AS [PAYS]
+    FROM [dbo].[ADRESSE] AS [ADRESSE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ALLERGENE" EntityType="Self.ALLERGENE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ALLERGENE].[ID_ALLERGENE] AS [ID_ALLERGENE], 
+    [ALLERGENE].[LIBELLE_ALLERGENE] AS [LIBELLE_ALLERGENE], 
+    [ALLERGENE].[CODE_ALLERGENE] AS [CODE_ALLERGENE]
+    FROM [dbo].[ALLERGENE] AS [ALLERGENE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="COMMANDE" EntityType="Self.COMMANDE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [COMMANDE].[ID_COMMANDE] AS [ID_COMMANDE], 
+    [COMMANDE].[ID_UTILISATEUR] AS [ID_UTILISATEUR], 
+    [COMMANDE].[ID_ADRESSE] AS [ID_ADRESSE], 
+    [COMMANDE].[DATE_COMMANDE] AS [DATE_COMMANDE], 
+    [COMMANDE].[TOTAL_COMMANDE] AS [TOTAL_COMMANDE], 
+    [COMMANDE].[ID_COMMANDE_STATUS] AS [ID_COMMANDE_STATUS]
+    FROM [dbo].[COMMANDE] AS [COMMANDE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="COMMANDE_STATUT" EntityType="Self.COMMANDE_STATUT" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [COMMANDE_STATUT].[ID_COMMANDE_STATUT] AS [ID_COMMANDE_STATUT], 
+    [COMMANDE_STATUT].[LIBELLE_COMMANDE_STATUT] AS [LIBELLE_COMMANDE_STATUT]
+    FROM [dbo].[COMMANDE_STATUT] AS [COMMANDE_STATUT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="FACTURE" EntityType="Self.FACTURE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [FACTURE].[ID_FACTURE] AS [ID_FACTURE], 
+    [FACTURE].[ID_COMMANDE] AS [ID_COMMANDE], 
+    [FACTURE].[ID_ADRESSE] AS [ID_ADRESSE], 
+    [FACTURE].[TOTAL_FACTURE] AS [TOTAL_FACTURE], 
+    [FACTURE].[FACTUREE] AS [FACTUREE]
+    FROM [dbo].[FACTURE] AS [FACTURE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="FAMILLE_REPAS" EntityType="Self.FAMILLE_REPAS" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [FAMILLE_REPAS].[ID_FAMILLE_REPAS] AS [ID_FAMILLE_REPAS], 
+    [FAMILLE_REPAS].[LIBELLE_FAMILLE_REPAS] AS [LIBELLE_FAMILLE_REPAS]
+    FROM [dbo].[FAMILLE_REPAS] AS [FAMILLE_REPAS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="GENRE" EntityType="Self.GENRE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GENRE].[ID_GENRE] AS [ID_GENRE], 
+    [GENRE].[LIBELLE_GENRE] AS [LIBELLE_GENRE]
+    FROM [dbo].[GENRE] AS [GENRE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LIGNE_COMMANDE" EntityType="Self.LIGNE_COMMANDE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LIGNE_COMMANDE].[ID_LIGNE_COMMANDE] AS [ID_LIGNE_COMMANDE], 
+    [LIGNE_COMMANDE].[ID_COMMANDE] AS [ID_COMMANDE], 
+    [LIGNE_COMMANDE].[ID_PRODUIT] AS [ID_PRODUIT], 
+    [LIGNE_COMMANDE].[QTE] AS [QTE], 
+    [LIGNE_COMMANDE].[PRIX_UNITAIRE] AS [PRIX_UNITAIRE]
+    FROM [dbo].[LIGNE_COMMANDE] AS [LIGNE_COMMANDE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LIGNE_FACTURE" EntityType="Self.LIGNE_FACTURE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LIGNE_FACTURE].[ID_LIGNE_FACTURE] AS [ID_LIGNE_FACTURE], 
+    [LIGNE_FACTURE].[ID_FACTURE] AS [ID_FACTURE], 
+    [LIGNE_FACTURE].[QUANTITE] AS [QUANTITE], 
+    [LIGNE_FACTURE].[PRIX_UNITAIRE] AS [PRIX_UNITAIRE]
+    FROM [dbo].[LIGNE_FACTURE] AS [LIGNE_FACTURE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="NOTE" EntityType="Self.NOTE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NOTE].[ID_NOTE] AS [ID_NOTE], 
+    [NOTE].[ID_PRODUIT] AS [ID_PRODUIT], 
+    [NOTE].[ID_COMMANDE] AS [ID_COMMANDE], 
+    [NOTE].[NOTE] AS [NOTE], 
+    [NOTE].[DATE_NOTE] AS [DATE_NOTE], 
+    [NOTE].[DESCRIPTION] AS [DESCRIPTION], 
+    [NOTE].[ACTIF] AS [ACTIF]
+    FROM [dbo].[NOTE] AS [NOTE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PARAMETRAGE" EntityType="Self.PARAMETRAGE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PARAMETRAGE].[ID_PARAMETRAGE] AS [ID_PARAMETRAGE], 
+    [PARAMETRAGE].[PLAGE] AS [PLAGE], 
+    [PARAMETRAGE].[PRIX] AS [PRIX]
+    FROM [dbo].[PARAMETRAGE] AS [PARAMETRAGE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PRODUIT" EntityType="Self.PRODUIT" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PRODUIT].[ID_PRODUIT] AS [ID_PRODUIT], 
+    [PRODUIT].[ID_FAMILLE_REPAS] AS [ID_FAMILLE_REPAS], 
+    [PRODUIT].[LIBELLE_PRODUIT] AS [LIBELLE_PRODUIT], 
+    [PRODUIT].[DESCRIPTION] AS [DESCRIPTION], 
+    [PRODUIT].[NOMBRE_DE_VENTE] AS [NOMBRE_DE_VENTE], 
+    [PRODUIT].[PRIX] AS [PRIX], 
+    [PRODUIT].[URL_IMAGE] AS [URL_IMAGE], 
+    [PRODUIT].[STOCK] AS [STOCK], 
+    [PRODUIT].[LMMJVSD] AS [LMMJVSD], 
+    [PRODUIT].[MOYENNE_NOTE] AS [MOYENNE_NOTE], 
+    [PRODUIT].[UNITE] AS [UNITE]
+    FROM [dbo].[PRODUIT] AS [PRODUIT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PRODUIT_ALLERGENE" EntityType="Self.PRODUIT_ALLERGENE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PRODUIT_ALLERGENE].[ID_PRODUIT] AS [ID_PRODUIT], 
+    [PRODUIT_ALLERGENE].[ID_ALLERGENE] AS [ID_ALLERGENE]
+    FROM [dbo].[PRODUIT_ALLERGENE] AS [PRODUIT_ALLERGENE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PROFIL" EntityType="Self.PROFIL" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PROFIL].[ID_PROFIL] AS [ID_PROFIL], 
+    [PROFIL].[LIBELLE_PROFIL] AS [LIBELLE_PROFIL]
+    FROM [dbo].[PROFIL] AS [PROFIL]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SOCIETE" EntityType="Self.SOCIETE" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SOCIETE].[ID_SOCIETE] AS [ID_SOCIETE], 
+    [SOCIETE].[LIBELLE_SOCIETE] AS [LIBELLE_SOCIETE], 
+    [SOCIETE].[NUMERO_RUE] AS [NUMERO_RUE], 
+    [SOCIETE].[RUE] AS [RUE], 
+    [SOCIETE].[CODE_POSTAL] AS [CODE_POSTAL], 
+    [SOCIETE].[VILLE] AS [VILLE], 
+    [SOCIETE].[PAYS] AS [PAYS]
+    FROM [dbo].[SOCIETE] AS [SOCIETE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TYPE_FAMILLE_REPAS" EntityType="Self.TYPE_FAMILLE_REPAS" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TYPE_FAMILLE_REPAS].[ID_TYPE_REPAS] AS [ID_TYPE_REPAS], 
+    [TYPE_FAMILLE_REPAS].[ID_FAMILLE_REPAS] AS [ID_FAMILLE_REPAS]
+    FROM [dbo].[TYPE_FAMILLE_REPAS] AS [TYPE_FAMILLE_REPAS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TYPE_REPAS" EntityType="Self.TYPE_REPAS" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TYPE_REPAS].[ID_TYPE_REPAS] AS [ID_TYPE_REPAS], 
+    [TYPE_REPAS].[LIBELLE_REPAS] AS [LIBELLE_REPAS]
+    FROM [dbo].[TYPE_REPAS] AS [TYPE_REPAS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UTILISATEUR" EntityType="Self.UTILISATEUR" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UTILISATEUR].[ID_UTILISATEUR] AS [ID_UTILISATEUR], 
+    [UTILISATEUR].[ID_GENRE] AS [ID_GENRE], 
+    [UTILISATEUR].[ID_PROFIL] AS [ID_PROFIL], 
+    [UTILISATEUR].[ID_SOCIETE] AS [ID_SOCIETE], 
+    [UTILISATEUR].[NOM] AS [NOM], 
+    [UTILISATEUR].[PRENOM] AS [PRENOM], 
+    [UTILISATEUR].[MOT_DE_PASSE] AS [MOT_DE_PASSE], 
+    [UTILISATEUR].[EMAIL] AS [EMAIL], 
+    [UTILISATEUR].[DATE_DE_NAISSANCE] AS [DATE_DE_NAISSANCE], 
+    [UTILISATEUR].[TEL] AS [TEL]
+    FROM [dbo].[UTILISATEUR] AS [UTILISATEUR]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

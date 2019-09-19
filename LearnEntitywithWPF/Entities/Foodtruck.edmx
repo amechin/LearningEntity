@@ -1,0 +1,985 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FoodtruckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.ACTUALITES' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="ACTUALITES">
+          <Key>
+            <PropertyRef Name="ID_ACTUALITE" />
+            <PropertyRef Name="TITRE" />
+            <PropertyRef Name="DESCRIPTION" />
+            <PropertyRef Name="URL_IMAGE" />
+            <PropertyRef Name="DATE_DEBUT" />
+            <PropertyRef Name="DATE_FIN" />
+            <PropertyRef Name="LINK" />
+            <PropertyRef Name="ID_UTILISATEUR" />
+            <PropertyRef Name="ACTIF" />
+          </Key>
+          <Property Name="ID_ACTUALITE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITRE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="text" Nullable="false" />
+          <Property Name="URL_IMAGE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DATE_DEBUT" Type="datetime" Nullable="false" />
+          <Property Name="DATE_FIN" Type="datetime" Nullable="false" />
+          <Property Name="LINK" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ID_UTILISATEUR" Type="int" Nullable="false" />
+          <Property Name="ACTIF" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.ADRESSE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="ADRESSE">
+          <Key>
+            <PropertyRef Name="ID_ADRESSE" />
+            <PropertyRef Name="ID_UTILISATEUR" />
+            <PropertyRef Name="LIBELLE_ADRESSE" />
+            <PropertyRef Name="ACTIF" />
+            <PropertyRef Name="NUMERO_RUE" />
+            <PropertyRef Name="RUE" />
+            <PropertyRef Name="CODE_POSTAL" />
+            <PropertyRef Name="VILLE" />
+            <PropertyRef Name="PAYS" />
+          </Key>
+          <Property Name="ID_ADRESSE" Type="int" Nullable="false" />
+          <Property Name="ID_UTILISATEUR" Type="int" Nullable="false" />
+          <Property Name="LIBELLE_ADRESSE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIF" Type="bit" Nullable="false" />
+          <Property Name="NUMERO_RUE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RUE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CODE_POSTAL" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="VILLE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PAYS" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.ALLERGENE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="ALLERGENE">
+          <Key>
+            <PropertyRef Name="ID_ALLERGENE" />
+            <PropertyRef Name="LIBELLE_ALLERGENE" />
+          </Key>
+          <Property Name="ID_ALLERGENE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_ALLERGENE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CODE_ALLERGENE" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.COMMANDE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="COMMANDE">
+          <Key>
+            <PropertyRef Name="ID_COMMANDE" />
+            <PropertyRef Name="ID_UTILISATEUR" />
+            <PropertyRef Name="ID_ADRESSE" />
+            <PropertyRef Name="DATE_COMMANDE" />
+            <PropertyRef Name="TOTAL_COMMANDE" />
+            <PropertyRef Name="ID_COMMANDE_STATUS" />
+          </Key>
+          <Property Name="ID_COMMANDE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_UTILISATEUR" Type="int" Nullable="false" />
+          <Property Name="ID_ADRESSE" Type="int" Nullable="false" />
+          <Property Name="DATE_COMMANDE" Type="datetime" Nullable="false" />
+          <Property Name="TOTAL_COMMANDE" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ID_COMMANDE_STATUS" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.COMMANDE_STATUT' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="COMMANDE_STATUT">
+          <Key>
+            <PropertyRef Name="ID_COMMANDE_STATUT" />
+            <PropertyRef Name="LIBELLE_COMMANDE_STATUT" />
+          </Key>
+          <Property Name="ID_COMMANDE_STATUT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_COMMANDE_STATUT" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.FACTURE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="FACTURE">
+          <Key>
+            <PropertyRef Name="ID_FACTURE" />
+            <PropertyRef Name="ID_COMMANDE" />
+            <PropertyRef Name="ID_ADRESSE" />
+            <PropertyRef Name="TOTAL_FACTURE" />
+            <PropertyRef Name="FACTUREE" />
+          </Key>
+          <Property Name="ID_FACTURE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_COMMANDE" Type="int" Nullable="false" />
+          <Property Name="ID_ADRESSE" Type="int" Nullable="false" />
+          <Property Name="TOTAL_FACTURE" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FACTUREE" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.FAMILLE_REPAS' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="FAMILLE_REPAS">
+          <Key>
+            <PropertyRef Name="ID_FAMILLE_REPAS" />
+            <PropertyRef Name="LIBELLE_FAMILLE_REPAS" />
+          </Key>
+          <Property Name="ID_FAMILLE_REPAS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_FAMILLE_REPAS" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.GENRE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="GENRE">
+          <Key>
+            <PropertyRef Name="ID_GENRE" />
+            <PropertyRef Name="LIBELLE_GENRE" />
+          </Key>
+          <Property Name="ID_GENRE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_GENRE" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.LIGNE_COMMANDE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="LIGNE_COMMANDE">
+          <Key>
+            <PropertyRef Name="ID_LIGNE_COMMANDE" />
+            <PropertyRef Name="ID_COMMANDE" />
+            <PropertyRef Name="ID_PRODUIT" />
+            <PropertyRef Name="QTE" />
+            <PropertyRef Name="PRIX_UNITAIRE" />
+          </Key>
+          <Property Name="ID_LIGNE_COMMANDE" Type="int" Nullable="false" />
+          <Property Name="ID_COMMANDE" Type="int" Nullable="false" />
+          <Property Name="ID_PRODUIT" Type="int" Nullable="false" />
+          <Property Name="QTE" Type="float" Nullable="false" />
+          <Property Name="PRIX_UNITAIRE" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.LIGNE_FACTURE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="LIGNE_FACTURE">
+          <Key>
+            <PropertyRef Name="ID_LIGNE_FACTURE" />
+            <PropertyRef Name="ID_FACTURE" />
+            <PropertyRef Name="QUANTITE" />
+            <PropertyRef Name="PRIX_UNITAIRE" />
+          </Key>
+          <Property Name="ID_LIGNE_FACTURE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_FACTURE" Type="int" Nullable="false" />
+          <Property Name="QUANTITE" Type="float" Nullable="false" />
+          <Property Name="PRIX_UNITAIRE" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.NOTE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="NOTE">
+          <Key>
+            <PropertyRef Name="ID_NOTE" />
+            <PropertyRef Name="ID_PRODUIT" />
+            <PropertyRef Name="ID_COMMANDE" />
+            <PropertyRef Name="NOTE" />
+            <PropertyRef Name="DATE_NOTE" />
+            <PropertyRef Name="ACTIF" />
+          </Key>
+          <Property Name="ID_NOTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PRODUIT" Type="int" Nullable="false" />
+          <Property Name="ID_COMMANDE" Type="int" Nullable="false" />
+          <Property Name="NOTE" Type="float" Nullable="false" />
+          <Property Name="DATE_NOTE" Type="datetime" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="text" />
+          <Property Name="ACTIF" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.PARAMETRAGE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="PARAMETRAGE">
+          <Key>
+            <PropertyRef Name="ID_PARAMETRAGE" />
+            <PropertyRef Name="PLAGE" />
+          </Key>
+          <Property Name="ID_PARAMETRAGE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PLAGE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PRIX" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.PRODUIT' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="ID_PRODUIT" />
+            <PropertyRef Name="ID_FAMILLE_REPAS" />
+            <PropertyRef Name="LIBELLE_PRODUIT" />
+            <PropertyRef Name="NOMBRE_DE_VENTE" />
+            <PropertyRef Name="PRIX" />
+            <PropertyRef Name="URL_IMAGE" />
+            <PropertyRef Name="STOCK" />
+          </Key>
+          <Property Name="ID_PRODUIT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_FAMILLE_REPAS" Type="int" Nullable="false" />
+          <Property Name="LIBELLE_PRODUIT" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="text" />
+          <Property Name="NOMBRE_DE_VENTE" Type="int" Nullable="false" />
+          <Property Name="PRIX" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="URL_IMAGE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="STOCK" Type="int" Nullable="false" />
+          <Property Name="LMMJVSD" Type="varchar" MaxLength="7" />
+          <Property Name="MOYENNE_NOTE" Type="float" />
+          <Property Name="UNITE" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.PRODUIT_ALLERGENE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="PRODUIT_ALLERGENE">
+          <Key>
+            <PropertyRef Name="ID_PRODUIT" />
+            <PropertyRef Name="ID_ALLERGENE" />
+          </Key>
+          <Property Name="ID_PRODUIT" Type="int" Nullable="false" />
+          <Property Name="ID_ALLERGENE" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.PROFIL' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="PROFIL">
+          <Key>
+            <PropertyRef Name="ID_PROFIL" />
+            <PropertyRef Name="LIBELLE_PROFIL" />
+          </Key>
+          <Property Name="ID_PROFIL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_PROFIL" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.SOCIETE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="SOCIETE">
+          <Key>
+            <PropertyRef Name="ID_SOCIETE" />
+            <PropertyRef Name="LIBELLE_SOCIETE" />
+            <PropertyRef Name="NUMERO_RUE" />
+            <PropertyRef Name="RUE" />
+            <PropertyRef Name="CODE_POSTAL" />
+            <PropertyRef Name="VILLE" />
+            <PropertyRef Name="PAYS" />
+          </Key>
+          <Property Name="ID_SOCIETE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_SOCIETE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NUMERO_RUE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RUE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CODE_POSTAL" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="VILLE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PAYS" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.TYPE_FAMILLE_REPAS' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="TYPE_FAMILLE_REPAS">
+          <Key>
+            <PropertyRef Name="ID_TYPE_REPAS" />
+            <PropertyRef Name="ID_FAMILLE_REPAS" />
+          </Key>
+          <Property Name="ID_TYPE_REPAS" Type="int" Nullable="false" />
+          <Property Name="ID_FAMILLE_REPAS" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.TYPE_REPAS' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="TYPE_REPAS">
+          <Key>
+            <PropertyRef Name="ID_TYPE_REPAS" />
+            <PropertyRef Name="LIBELLE_REPAS" />
+          </Key>
+          <Property Name="ID_TYPE_REPAS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIBELLE_REPAS" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'Foodtruck.dbo.UTILISATEUR' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="UTILISATEUR">
+          <Key>
+            <PropertyRef Name="ID_UTILISATEUR" />
+            <PropertyRef Name="ID_GENRE" />
+            <PropertyRef Name="ID_PROFIL" />
+            <PropertyRef Name="NOM" />
+            <PropertyRef Name="PRENOM" />
+            <PropertyRef Name="MOT_DE_PASSE" />
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="DATE_DE_NAISSANCE" />
+          </Key>
+          <Property Name="ID_UTILISATEUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_GENRE" Type="int" Nullable="false" />
+          <Property Name="ID_PROFIL" Type="int" Nullable="false" />
+          <Property Name="ID_SOCIETE" Type="int" />
+          <Property Name="NOM" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PRENOM" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MOT_DE_PASSE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DATE_DE_NAISSANCE" Type="date" Nullable="false" />
+          <Property Name="TEL" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="FoodtruckModelStoreContainer">
+          <EntitySet Name="ACTUALITES" EntityType="Self.ACTUALITES" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ACTUALITES].[ID_ACTUALITE] AS [ID_ACTUALITE], 
+    [ACTUALITES].[TITRE] AS [TITRE], 
+    [ACTUALITES].[DESCRIPTION] AS [DESCRIPTION], 
+    [ACTUALITES].[URL_IMAGE] AS [URL_IMAGE], 
+    [ACTUALITES].[DATE_DEBUT] AS [DATE_DEBUT], 
+    [ACTUALITES].[DATE_FIN] AS [DATE_FIN], 
+    [ACTUALITES].[LINK] AS [LINK], 
+    [ACTUALITES].[ID_UTILISATEUR] AS [ID_UTILISATEUR], 
+    [ACTUALITES].[ACTIF] AS [ACTIF]
+    FROM [dbo].[ACTUALITES] AS [ACTUALITES]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADRESSE" EntityType="Self.ADRESSE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADRESSE].[ID_ADRESSE] AS [ID_ADRESSE], 
+    [ADRESSE].[ID_UTILISATEUR] AS [ID_UTILISATEUR], 
+    [ADRESSE].[LIBELLE_ADRESSE] AS [LIBELLE_ADRESSE], 
+    [ADRESSE].[ACTIF] AS [ACTIF], 
+    [ADRESSE].[NUMERO_RUE] AS [NUMERO_RUE], 
+    [ADRESSE].[RUE] AS [RUE], 
+    [ADRESSE].[CODE_POSTAL] AS [CODE_POSTAL], 
+    [ADRESSE].[VILLE] AS [VILLE], 
+    [ADRESSE].[PAYS] AS [PAYS]
+    FROM [dbo].[ADRESSE] AS [ADRESSE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ALLERGENE" EntityType="Self.ALLERGENE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ALLERGENE].[ID_ALLERGENE] AS [ID_ALLERGENE], 
+    [ALLERGENE].[LIBELLE_ALLERGENE] AS [LIBELLE_ALLERGENE], 
+    [ALLERGENE].[CODE_ALLERGENE] AS [CODE_ALLERGENE]
+    FROM [dbo].[ALLERGENE] AS [ALLERGENE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="COMMANDE" EntityType="Self.COMMANDE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [COMMANDE].[ID_COMMANDE] AS [ID_COMMANDE], 
+    [COMMANDE].[ID_UTILISATEUR] AS [ID_UTILISATEUR], 
+    [COMMANDE].[ID_ADRESSE] AS [ID_ADRESSE], 
+    [COMMANDE].[DATE_COMMANDE] AS [DATE_COMMANDE], 
+    [COMMANDE].[TOTAL_COMMANDE] AS [TOTAL_COMMANDE], 
+    [COMMANDE].[ID_COMMANDE_STATUS] AS [ID_COMMANDE_STATUS]
+    FROM [dbo].[COMMANDE] AS [COMMANDE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="COMMANDE_STATUT" EntityType="Self.COMMANDE_STATUT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [COMMANDE_STATUT].[ID_COMMANDE_STATUT] AS [ID_COMMANDE_STATUT], 
+    [COMMANDE_STATUT].[LIBELLE_COMMANDE_STATUT] AS [LIBELLE_COMMANDE_STATUT]
+    FROM [dbo].[COMMANDE_STATUT] AS [COMMANDE_STATUT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FACTURE" EntityType="Self.FACTURE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FACTURE].[ID_FACTURE] AS [ID_FACTURE], 
+    [FACTURE].[ID_COMMANDE] AS [ID_COMMANDE], 
+    [FACTURE].[ID_ADRESSE] AS [ID_ADRESSE], 
+    [FACTURE].[TOTAL_FACTURE] AS [TOTAL_FACTURE], 
+    [FACTURE].[FACTUREE] AS [FACTUREE]
+    FROM [dbo].[FACTURE] AS [FACTURE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FAMILLE_REPAS" EntityType="Self.FAMILLE_REPAS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FAMILLE_REPAS].[ID_FAMILLE_REPAS] AS [ID_FAMILLE_REPAS], 
+    [FAMILLE_REPAS].[LIBELLE_FAMILLE_REPAS] AS [LIBELLE_FAMILLE_REPAS]
+    FROM [dbo].[FAMILLE_REPAS] AS [FAMILLE_REPAS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GENRE" EntityType="Self.GENRE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GENRE].[ID_GENRE] AS [ID_GENRE], 
+    [GENRE].[LIBELLE_GENRE] AS [LIBELLE_GENRE]
+    FROM [dbo].[GENRE] AS [GENRE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LIGNE_COMMANDE" EntityType="Self.LIGNE_COMMANDE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LIGNE_COMMANDE].[ID_LIGNE_COMMANDE] AS [ID_LIGNE_COMMANDE], 
+    [LIGNE_COMMANDE].[ID_COMMANDE] AS [ID_COMMANDE], 
+    [LIGNE_COMMANDE].[ID_PRODUIT] AS [ID_PRODUIT], 
+    [LIGNE_COMMANDE].[QTE] AS [QTE], 
+    [LIGNE_COMMANDE].[PRIX_UNITAIRE] AS [PRIX_UNITAIRE]
+    FROM [dbo].[LIGNE_COMMANDE] AS [LIGNE_COMMANDE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LIGNE_FACTURE" EntityType="Self.LIGNE_FACTURE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LIGNE_FACTURE].[ID_LIGNE_FACTURE] AS [ID_LIGNE_FACTURE], 
+    [LIGNE_FACTURE].[ID_FACTURE] AS [ID_FACTURE], 
+    [LIGNE_FACTURE].[QUANTITE] AS [QUANTITE], 
+    [LIGNE_FACTURE].[PRIX_UNITAIRE] AS [PRIX_UNITAIRE]
+    FROM [dbo].[LIGNE_FACTURE] AS [LIGNE_FACTURE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NOTE" EntityType="Self.NOTE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [NOTE].[ID_NOTE] AS [ID_NOTE], 
+    [NOTE].[ID_PRODUIT] AS [ID_PRODUIT], 
+    [NOTE].[ID_COMMANDE] AS [ID_COMMANDE], 
+    [NOTE].[NOTE] AS [NOTE], 
+    [NOTE].[DATE_NOTE] AS [DATE_NOTE], 
+    [NOTE].[DESCRIPTION] AS [DESCRIPTION], 
+    [NOTE].[ACTIF] AS [ACTIF]
+    FROM [dbo].[NOTE] AS [NOTE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PARAMETRAGE" EntityType="Self.PARAMETRAGE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PARAMETRAGE].[ID_PARAMETRAGE] AS [ID_PARAMETRAGE], 
+    [PARAMETRAGE].[PLAGE] AS [PLAGE], 
+    [PARAMETRAGE].[PRIX] AS [PRIX]
+    FROM [dbo].[PARAMETRAGE] AS [PARAMETRAGE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PRODUIT" EntityType="Self.PRODUIT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PRODUIT].[ID_PRODUIT] AS [ID_PRODUIT], 
+    [PRODUIT].[ID_FAMILLE_REPAS] AS [ID_FAMILLE_REPAS], 
+    [PRODUIT].[LIBELLE_PRODUIT] AS [LIBELLE_PRODUIT], 
+    [PRODUIT].[DESCRIPTION] AS [DESCRIPTION], 
+    [PRODUIT].[NOMBRE_DE_VENTE] AS [NOMBRE_DE_VENTE], 
+    [PRODUIT].[PRIX] AS [PRIX], 
+    [PRODUIT].[URL_IMAGE] AS [URL_IMAGE], 
+    [PRODUIT].[STOCK] AS [STOCK], 
+    [PRODUIT].[LMMJVSD] AS [LMMJVSD], 
+    [PRODUIT].[MOYENNE_NOTE] AS [MOYENNE_NOTE], 
+    [PRODUIT].[UNITE] AS [UNITE]
+    FROM [dbo].[PRODUIT] AS [PRODUIT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PRODUIT_ALLERGENE" EntityType="Self.PRODUIT_ALLERGENE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PRODUIT_ALLERGENE].[ID_PRODUIT] AS [ID_PRODUIT], 
+    [PRODUIT_ALLERGENE].[ID_ALLERGENE] AS [ID_ALLERGENE]
+    FROM [dbo].[PRODUIT_ALLERGENE] AS [PRODUIT_ALLERGENE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PROFIL" EntityType="Self.PROFIL" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PROFIL].[ID_PROFIL] AS [ID_PROFIL], 
+    [PROFIL].[LIBELLE_PROFIL] AS [LIBELLE_PROFIL]
+    FROM [dbo].[PROFIL] AS [PROFIL]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SOCIETE" EntityType="Self.SOCIETE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SOCIETE].[ID_SOCIETE] AS [ID_SOCIETE], 
+    [SOCIETE].[LIBELLE_SOCIETE] AS [LIBELLE_SOCIETE], 
+    [SOCIETE].[NUMERO_RUE] AS [NUMERO_RUE], 
+    [SOCIETE].[RUE] AS [RUE], 
+    [SOCIETE].[CODE_POSTAL] AS [CODE_POSTAL], 
+    [SOCIETE].[VILLE] AS [VILLE], 
+    [SOCIETE].[PAYS] AS [PAYS]
+    FROM [dbo].[SOCIETE] AS [SOCIETE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TYPE_FAMILLE_REPAS" EntityType="Self.TYPE_FAMILLE_REPAS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TYPE_FAMILLE_REPAS].[ID_TYPE_REPAS] AS [ID_TYPE_REPAS], 
+    [TYPE_FAMILLE_REPAS].[ID_FAMILLE_REPAS] AS [ID_FAMILLE_REPAS]
+    FROM [dbo].[TYPE_FAMILLE_REPAS] AS [TYPE_FAMILLE_REPAS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TYPE_REPAS" EntityType="Self.TYPE_REPAS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TYPE_REPAS].[ID_TYPE_REPAS] AS [ID_TYPE_REPAS], 
+    [TYPE_REPAS].[LIBELLE_REPAS] AS [LIBELLE_REPAS]
+    FROM [dbo].[TYPE_REPAS] AS [TYPE_REPAS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UTILISATEUR" EntityType="Self.UTILISATEUR" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UTILISATEUR].[ID_UTILISATEUR] AS [ID_UTILISATEUR], 
+    [UTILISATEUR].[ID_GENRE] AS [ID_GENRE], 
+    [UTILISATEUR].[ID_PROFIL] AS [ID_PROFIL], 
+    [UTILISATEUR].[ID_SOCIETE] AS [ID_SOCIETE], 
+    [UTILISATEUR].[NOM] AS [NOM], 
+    [UTILISATEUR].[PRENOM] AS [PRENOM], 
+    [UTILISATEUR].[MOT_DE_PASSE] AS [MOT_DE_PASSE], 
+    [UTILISATEUR].[EMAIL] AS [EMAIL], 
+    [UTILISATEUR].[DATE_DE_NAISSANCE] AS [DATE_DE_NAISSANCE], 
+    [UTILISATEUR].[TEL] AS [TEL]
+    FROM [dbo].[UTILISATEUR] AS [UTILISATEUR]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoodtruckModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACTUALITES">
+          <Key>
+            <PropertyRef Name="ID_ACTUALITE" />
+            <PropertyRef Name="TITRE" />
+            <PropertyRef Name="DESCRIPTION" />
+            <PropertyRef Name="URL_IMAGE" />
+            <PropertyRef Name="DATE_DEBUT" />
+            <PropertyRef Name="DATE_FIN" />
+            <PropertyRef Name="LINK" />
+            <PropertyRef Name="ID_UTILISATEUR" />
+            <PropertyRef Name="ACTIF" />
+          </Key>
+          <Property Name="ID_ACTUALITE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="URL_IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_DEBUT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_FIN" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LINK" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_UTILISATEUR" Type="Int32" Nullable="false" />
+          <Property Name="ACTIF" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ADRESSE">
+          <Key>
+            <PropertyRef Name="ID_ADRESSE" />
+            <PropertyRef Name="ID_UTILISATEUR" />
+            <PropertyRef Name="LIBELLE_ADRESSE" />
+            <PropertyRef Name="ACTIF" />
+            <PropertyRef Name="NUMERO_RUE" />
+            <PropertyRef Name="RUE" />
+            <PropertyRef Name="CODE_POSTAL" />
+            <PropertyRef Name="VILLE" />
+            <PropertyRef Name="PAYS" />
+          </Key>
+          <Property Name="ID_ADRESSE" Type="Int32" Nullable="false" />
+          <Property Name="ID_UTILISATEUR" Type="Int32" Nullable="false" />
+          <Property Name="LIBELLE_ADRESSE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTIF" Type="Boolean" Nullable="false" />
+          <Property Name="NUMERO_RUE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RUE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_POSTAL" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VILLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PAYS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ALLERGENE">
+          <Key>
+            <PropertyRef Name="ID_ALLERGENE" />
+            <PropertyRef Name="LIBELLE_ALLERGENE" />
+          </Key>
+          <Property Name="ID_ALLERGENE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_ALLERGENE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_ALLERGENE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="COMMANDE">
+          <Key>
+            <PropertyRef Name="ID_COMMANDE" />
+            <PropertyRef Name="ID_UTILISATEUR" />
+            <PropertyRef Name="ID_ADRESSE" />
+            <PropertyRef Name="DATE_COMMANDE" />
+            <PropertyRef Name="TOTAL_COMMANDE" />
+            <PropertyRef Name="ID_COMMANDE_STATUS" />
+          </Key>
+          <Property Name="ID_COMMANDE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_UTILISATEUR" Type="Int32" Nullable="false" />
+          <Property Name="ID_ADRESSE" Type="Int32" Nullable="false" />
+          <Property Name="DATE_COMMANDE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TOTAL_COMMANDE" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ID_COMMANDE_STATUS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMMANDE_STATUT">
+          <Key>
+            <PropertyRef Name="ID_COMMANDE_STATUT" />
+            <PropertyRef Name="LIBELLE_COMMANDE_STATUT" />
+          </Key>
+          <Property Name="ID_COMMANDE_STATUT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_COMMANDE_STATUT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTURE">
+          <Key>
+            <PropertyRef Name="ID_FACTURE" />
+            <PropertyRef Name="ID_COMMANDE" />
+            <PropertyRef Name="ID_ADRESSE" />
+            <PropertyRef Name="TOTAL_FACTURE" />
+            <PropertyRef Name="FACTUREE" />
+          </Key>
+          <Property Name="ID_FACTURE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_COMMANDE" Type="Int32" Nullable="false" />
+          <Property Name="ID_ADRESSE" Type="Int32" Nullable="false" />
+          <Property Name="TOTAL_FACTURE" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FACTUREE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FAMILLE_REPAS">
+          <Key>
+            <PropertyRef Name="ID_FAMILLE_REPAS" />
+            <PropertyRef Name="LIBELLE_FAMILLE_REPAS" />
+          </Key>
+          <Property Name="ID_FAMILLE_REPAS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_FAMILLE_REPAS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GENRE">
+          <Key>
+            <PropertyRef Name="ID_GENRE" />
+            <PropertyRef Name="LIBELLE_GENRE" />
+          </Key>
+          <Property Name="ID_GENRE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_GENRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LIGNE_COMMANDE">
+          <Key>
+            <PropertyRef Name="ID_LIGNE_COMMANDE" />
+            <PropertyRef Name="ID_COMMANDE" />
+            <PropertyRef Name="ID_PRODUIT" />
+            <PropertyRef Name="QTE" />
+            <PropertyRef Name="PRIX_UNITAIRE" />
+          </Key>
+          <Property Name="ID_LIGNE_COMMANDE" Type="Int32" Nullable="false" />
+          <Property Name="ID_COMMANDE" Type="Int32" Nullable="false" />
+          <Property Name="ID_PRODUIT" Type="Int32" Nullable="false" />
+          <Property Name="QTE" Type="Double" Nullable="false" />
+          <Property Name="PRIX_UNITAIRE" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LIGNE_FACTURE">
+          <Key>
+            <PropertyRef Name="ID_LIGNE_FACTURE" />
+            <PropertyRef Name="ID_FACTURE" />
+            <PropertyRef Name="QUANTITE" />
+            <PropertyRef Name="PRIX_UNITAIRE" />
+          </Key>
+          <Property Name="ID_LIGNE_FACTURE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_FACTURE" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITE" Type="Double" Nullable="false" />
+          <Property Name="PRIX_UNITAIRE" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NOTE">
+          <Key>
+            <PropertyRef Name="ID_NOTE" />
+            <PropertyRef Name="ID_PRODUIT" />
+            <PropertyRef Name="ID_COMMANDE" />
+            <PropertyRef Name="NOTE1" />
+            <PropertyRef Name="DATE_NOTE" />
+            <PropertyRef Name="ACTIF" />
+          </Key>
+          <Property Name="ID_NOTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PRODUIT" Type="Int32" Nullable="false" />
+          <Property Name="ID_COMMANDE" Type="Int32" Nullable="false" />
+          <Property Name="NOTE1" Type="Double" Nullable="false" />
+          <Property Name="DATE_NOTE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIF" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PARAMETRAGE">
+          <Key>
+            <PropertyRef Name="ID_PARAMETRAGE" />
+            <PropertyRef Name="PLAGE" />
+          </Key>
+          <Property Name="ID_PARAMETRAGE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PLAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRIX" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="ID_PRODUIT" />
+            <PropertyRef Name="ID_FAMILLE_REPAS" />
+            <PropertyRef Name="LIBELLE_PRODUIT" />
+            <PropertyRef Name="NOMBRE_DE_VENTE" />
+            <PropertyRef Name="PRIX" />
+            <PropertyRef Name="URL_IMAGE" />
+            <PropertyRef Name="STOCK" />
+          </Key>
+          <Property Name="ID_PRODUIT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_FAMILLE_REPAS" Type="Int32" Nullable="false" />
+          <Property Name="LIBELLE_PRODUIT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_DE_VENTE" Type="Int32" Nullable="false" />
+          <Property Name="PRIX" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="URL_IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STOCK" Type="Int32" Nullable="false" />
+          <Property Name="LMMJVSD" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="MOYENNE_NOTE" Type="Double" />
+          <Property Name="UNITE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PRODUIT_ALLERGENE">
+          <Key>
+            <PropertyRef Name="ID_PRODUIT" />
+            <PropertyRef Name="ID_ALLERGENE" />
+          </Key>
+          <Property Name="ID_PRODUIT" Type="Int32" Nullable="false" />
+          <Property Name="ID_ALLERGENE" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROFIL">
+          <Key>
+            <PropertyRef Name="ID_PROFIL" />
+            <PropertyRef Name="LIBELLE_PROFIL" />
+          </Key>
+          <Property Name="ID_PROFIL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_PROFIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SOCIETE">
+          <Key>
+            <PropertyRef Name="ID_SOCIETE" />
+            <PropertyRef Name="LIBELLE_SOCIETE" />
+            <PropertyRef Name="NUMERO_RUE" />
+            <PropertyRef Name="RUE" />
+            <PropertyRef Name="CODE_POSTAL" />
+            <PropertyRef Name="VILLE" />
+            <PropertyRef Name="PAYS" />
+          </Key>
+          <Property Name="ID_SOCIETE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_SOCIETE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMERO_RUE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RUE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_POSTAL" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VILLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PAYS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TYPE_FAMILLE_REPAS">
+          <Key>
+            <PropertyRef Name="ID_TYPE_REPAS" />
+            <PropertyRef Name="ID_FAMILLE_REPAS" />
+          </Key>
+          <Property Name="ID_TYPE_REPAS" Type="Int32" Nullable="false" />
+          <Property Name="ID_FAMILLE_REPAS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TYPE_REPAS">
+          <Key>
+            <PropertyRef Name="ID_TYPE_REPAS" />
+            <PropertyRef Name="LIBELLE_REPAS" />
+          </Key>
+          <Property Name="ID_TYPE_REPAS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIBELLE_REPAS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UTILISATEUR">
+          <Key>
+            <PropertyRef Name="ID_UTILISATEUR" />
+            <PropertyRef Name="ID_GENRE" />
+            <PropertyRef Name="ID_PROFIL" />
+            <PropertyRef Name="NOM" />
+            <PropertyRef Name="PRENOM" />
+            <PropertyRef Name="MOT_DE_PASSE" />
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="DATE_DE_NAISSANCE" />
+          </Key>
+          <Property Name="ID_UTILISATEUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_GENRE" Type="Int32" Nullable="false" />
+          <Property Name="ID_PROFIL" Type="Int32" Nullable="false" />
+          <Property Name="ID_SOCIETE" Type="Int32" />
+          <Property Name="NOM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MOT_DE_PASSE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_DE_NAISSANCE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TEL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="FoodtruckEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACTUALITES" EntityType="Self.ACTUALITES" />
+          <EntitySet Name="ADRESSE" EntityType="Self.ADRESSE" />
+          <EntitySet Name="ALLERGENE" EntityType="Self.ALLERGENE" />
+          <EntitySet Name="COMMANDE" EntityType="Self.COMMANDE" />
+          <EntitySet Name="COMMANDE_STATUT" EntityType="Self.COMMANDE_STATUT" />
+          <EntitySet Name="FACTURE" EntityType="Self.FACTURE" />
+          <EntitySet Name="FAMILLE_REPAS" EntityType="Self.FAMILLE_REPAS" />
+          <EntitySet Name="GENRE" EntityType="Self.GENRE" />
+          <EntitySet Name="LIGNE_COMMANDE" EntityType="Self.LIGNE_COMMANDE" />
+          <EntitySet Name="LIGNE_FACTURE" EntityType="Self.LIGNE_FACTURE" />
+          <EntitySet Name="NOTE" EntityType="Self.NOTE" />
+          <EntitySet Name="PARAMETRAGE" EntityType="Self.PARAMETRAGE" />
+          <EntitySet Name="PRODUIT" EntityType="Self.PRODUIT" />
+          <EntitySet Name="PRODUIT_ALLERGENE" EntityType="Self.PRODUIT_ALLERGENE" />
+          <EntitySet Name="PROFIL" EntityType="Self.PROFIL" />
+          <EntitySet Name="SOCIETE" EntityType="Self.SOCIETE" />
+          <EntitySet Name="TYPE_FAMILLE_REPAS" EntityType="Self.TYPE_FAMILLE_REPAS" />
+          <EntitySet Name="TYPE_REPAS" EntityType="Self.TYPE_REPAS" />
+          <EntitySet Name="UTILISATEUR" EntityType="Self.UTILISATEUR" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoodtruckModelStoreContainer" CdmEntityContainer="FoodtruckEntities">
+          <EntitySetMapping Name="ACTUALITES">
+            <EntityTypeMapping TypeName="FoodtruckModel.ACTUALITES">
+              <MappingFragment StoreEntitySet="ACTUALITES">
+                <ScalarProperty Name="ID_ACTUALITE" ColumnName="ID_ACTUALITE" />
+                <ScalarProperty Name="TITRE" ColumnName="TITRE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="URL_IMAGE" ColumnName="URL_IMAGE" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="LINK" ColumnName="LINK" />
+                <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+                <ScalarProperty Name="ACTIF" ColumnName="ACTIF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADRESSE">
+            <EntityTypeMapping TypeName="FoodtruckModel.ADRESSE">
+              <MappingFragment StoreEntitySet="ADRESSE">
+                <ScalarProperty Name="ID_ADRESSE" ColumnName="ID_ADRESSE" />
+                <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+                <ScalarProperty Name="LIBELLE_ADRESSE" ColumnName="LIBELLE_ADRESSE" />
+                <ScalarProperty Name="ACTIF" ColumnName="ACTIF" />
+                <ScalarProperty Name="NUMERO_RUE" ColumnName="NUMERO_RUE" />
+                <ScalarProperty Name="RUE" ColumnName="RUE" />
+                <ScalarProperty Name="CODE_POSTAL" ColumnName="CODE_POSTAL" />
+                <ScalarProperty Name="VILLE" ColumnName="VILLE" />
+                <ScalarProperty Name="PAYS" ColumnName="PAYS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALLERGENE">
+            <EntityTypeMapping TypeName="FoodtruckModel.ALLERGENE">
+              <MappingFragment StoreEntitySet="ALLERGENE">
+                <ScalarProperty Name="ID_ALLERGENE" ColumnName="ID_ALLERGENE" />
+                <ScalarProperty Name="LIBELLE_ALLERGENE" ColumnName="LIBELLE_ALLERGENE" />
+                <ScalarProperty Name="CODE_ALLERGENE" ColumnName="CODE_ALLERGENE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMANDE">
+            <EntityTypeMapping TypeName="FoodtruckModel.COMMANDE">
+              <MappingFragment StoreEntitySet="COMMANDE">
+                <ScalarProperty Name="ID_COMMANDE" ColumnName="ID_COMMANDE" />
+                <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+                <ScalarProperty Name="ID_ADRESSE" ColumnName="ID_ADRESSE" />
+                <ScalarProperty Name="DATE_COMMANDE" ColumnName="DATE_COMMANDE" />
+                <ScalarProperty Name="TOTAL_COMMANDE" ColumnName="TOTAL_COMMANDE" />
+                <ScalarProperty Name="ID_COMMANDE_STATUS" ColumnName="ID_COMMANDE_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMANDE_STATUT">
+            <EntityTypeMapping TypeName="FoodtruckModel.COMMANDE_STATUT">
+              <MappingFragment StoreEntitySet="COMMANDE_STATUT">
+                <ScalarProperty Name="ID_COMMANDE_STATUT" ColumnName="ID_COMMANDE_STATUT" />
+                <ScalarProperty Name="LIBELLE_COMMANDE_STATUT" ColumnName="LIBELLE_COMMANDE_STATUT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURE">
+            <EntityTypeMapping TypeName="FoodtruckModel.FACTURE">
+              <MappingFragment StoreEntitySet="FACTURE">
+                <ScalarProperty Name="ID_FACTURE" ColumnName="ID_FACTURE" />
+                <ScalarProperty Name="ID_COMMANDE" ColumnName="ID_COMMANDE" />
+                <ScalarProperty Name="ID_ADRESSE" ColumnName="ID_ADRESSE" />
+                <ScalarProperty Name="TOTAL_FACTURE" ColumnName="TOTAL_FACTURE" />
+                <ScalarProperty Name="FACTUREE" ColumnName="FACTUREE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAMILLE_REPAS">
+            <EntityTypeMapping TypeName="FoodtruckModel.FAMILLE_REPAS">
+              <MappingFragment StoreEntitySet="FAMILLE_REPAS">
+                <ScalarProperty Name="ID_FAMILLE_REPAS" ColumnName="ID_FAMILLE_REPAS" />
+                <ScalarProperty Name="LIBELLE_FAMILLE_REPAS" ColumnName="LIBELLE_FAMILLE_REPAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GENRE">
+            <EntityTypeMapping TypeName="FoodtruckModel.GENRE">
+              <MappingFragment StoreEntitySet="GENRE">
+                <ScalarProperty Name="ID_GENRE" ColumnName="ID_GENRE" />
+                <ScalarProperty Name="LIBELLE_GENRE" ColumnName="LIBELLE_GENRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIGNE_COMMANDE">
+            <EntityTypeMapping TypeName="FoodtruckModel.LIGNE_COMMANDE">
+              <MappingFragment StoreEntitySet="LIGNE_COMMANDE">
+                <ScalarProperty Name="ID_LIGNE_COMMANDE" ColumnName="ID_LIGNE_COMMANDE" />
+                <ScalarProperty Name="ID_COMMANDE" ColumnName="ID_COMMANDE" />
+                <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+                <ScalarProperty Name="QTE" ColumnName="QTE" />
+                <ScalarProperty Name="PRIX_UNITAIRE" ColumnName="PRIX_UNITAIRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIGNE_FACTURE">
+            <EntityTypeMapping TypeName="FoodtruckModel.LIGNE_FACTURE">
+              <MappingFragment StoreEntitySet="LIGNE_FACTURE">
+                <ScalarProperty Name="ID_LIGNE_FACTURE" ColumnName="ID_LIGNE_FACTURE" />
+                <ScalarProperty Name="ID_FACTURE" ColumnName="ID_FACTURE" />
+                <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+                <ScalarProperty Name="PRIX_UNITAIRE" ColumnName="PRIX_UNITAIRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOTE">
+            <EntityTypeMapping TypeName="FoodtruckModel.NOTE">
+              <MappingFragment StoreEntitySet="NOTE">
+                <ScalarProperty Name="ID_NOTE" ColumnName="ID_NOTE" />
+                <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+                <ScalarProperty Name="ID_COMMANDE" ColumnName="ID_COMMANDE" />
+                <ScalarProperty Name="NOTE1" ColumnName="NOTE" />
+                <ScalarProperty Name="DATE_NOTE" ColumnName="DATE_NOTE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ACTIF" ColumnName="ACTIF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARAMETRAGE">
+            <EntityTypeMapping TypeName="FoodtruckModel.PARAMETRAGE">
+              <MappingFragment StoreEntitySet="PARAMETRAGE">
+                <ScalarProperty Name="ID_PARAMETRAGE" ColumnName="ID_PARAMETRAGE" />
+                <ScalarProperty Name="PLAGE" ColumnName="PLAGE" />
+                <ScalarProperty Name="PRIX" ColumnName="PRIX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUIT">
+            <EntityTypeMapping TypeName="FoodtruckModel.PRODUIT">
+              <MappingFragment StoreEntitySet="PRODUIT">
+                <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+                <ScalarProperty Name="ID_FAMILLE_REPAS" ColumnName="ID_FAMILLE_REPAS" />
+                <ScalarProperty Name="LIBELLE_PRODUIT" ColumnName="LIBELLE_PRODUIT" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOMBRE_DE_VENTE" ColumnName="NOMBRE_DE_VENTE" />
+                <ScalarProperty Name="PRIX" ColumnName="PRIX" />
+                <ScalarProperty Name="URL_IMAGE" ColumnName="URL_IMAGE" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+                <ScalarProperty Name="LMMJVSD" ColumnName="LMMJVSD" />
+                <ScalarProperty Name="MOYENNE_NOTE" ColumnName="MOYENNE_NOTE" />
+                <ScalarProperty Name="UNITE" ColumnName="UNITE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUIT_ALLERGENE">
+            <EntityTypeMapping TypeName="FoodtruckModel.PRODUIT_ALLERGENE">
+              <MappingFragment StoreEntitySet="PRODUIT_ALLERGENE">
+                <ScalarProperty Name="ID_PRODUIT" ColumnName="ID_PRODUIT" />
+                <ScalarProperty Name="ID_ALLERGENE" ColumnName="ID_ALLERGENE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFIL">
+            <EntityTypeMapping TypeName="FoodtruckModel.PROFIL">
+              <MappingFragment StoreEntitySet="PROFIL">
+                <ScalarProperty Name="ID_PROFIL" ColumnName="ID_PROFIL" />
+                <ScalarProperty Name="LIBELLE_PROFIL" ColumnName="LIBELLE_PROFIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOCIETE">
+            <EntityTypeMapping TypeName="FoodtruckModel.SOCIETE">
+              <MappingFragment StoreEntitySet="SOCIETE">
+                <ScalarProperty Name="ID_SOCIETE" ColumnName="ID_SOCIETE" />
+                <ScalarProperty Name="LIBELLE_SOCIETE" ColumnName="LIBELLE_SOCIETE" />
+                <ScalarProperty Name="NUMERO_RUE" ColumnName="NUMERO_RUE" />
+                <ScalarProperty Name="RUE" ColumnName="RUE" />
+                <ScalarProperty Name="CODE_POSTAL" ColumnName="CODE_POSTAL" />
+                <ScalarProperty Name="VILLE" ColumnName="VILLE" />
+                <ScalarProperty Name="PAYS" ColumnName="PAYS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPE_FAMILLE_REPAS">
+            <EntityTypeMapping TypeName="FoodtruckModel.TYPE_FAMILLE_REPAS">
+              <MappingFragment StoreEntitySet="TYPE_FAMILLE_REPAS">
+                <ScalarProperty Name="ID_TYPE_REPAS" ColumnName="ID_TYPE_REPAS" />
+                <ScalarProperty Name="ID_FAMILLE_REPAS" ColumnName="ID_FAMILLE_REPAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPE_REPAS">
+            <EntityTypeMapping TypeName="FoodtruckModel.TYPE_REPAS">
+              <MappingFragment StoreEntitySet="TYPE_REPAS">
+                <ScalarProperty Name="ID_TYPE_REPAS" ColumnName="ID_TYPE_REPAS" />
+                <ScalarProperty Name="LIBELLE_REPAS" ColumnName="LIBELLE_REPAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UTILISATEUR">
+            <EntityTypeMapping TypeName="FoodtruckModel.UTILISATEUR">
+              <MappingFragment StoreEntitySet="UTILISATEUR">
+                <ScalarProperty Name="ID_UTILISATEUR" ColumnName="ID_UTILISATEUR" />
+                <ScalarProperty Name="ID_GENRE" ColumnName="ID_GENRE" />
+                <ScalarProperty Name="ID_PROFIL" ColumnName="ID_PROFIL" />
+                <ScalarProperty Name="ID_SOCIETE" ColumnName="ID_SOCIETE" />
+                <ScalarProperty Name="NOM" ColumnName="NOM" />
+                <ScalarProperty Name="PRENOM" ColumnName="PRENOM" />
+                <ScalarProperty Name="MOT_DE_PASSE" ColumnName="MOT_DE_PASSE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DATE_DE_NAISSANCE" ColumnName="DATE_DE_NAISSANCE" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
